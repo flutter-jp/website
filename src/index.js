@@ -1,13 +1,9 @@
-import Koa from "koa";
-import Router from "koa-router";
+import express from "express";
 
-const app = new Koa();
-const router = new Router();
+const app = express();
 
-router.get("/", (ctx, next) => {
-  ctx.body = "Hello, Koa.";
+app.get("/", (req, res) => {
+  res.end("Hello, world");
 });
 
-app.use(router.routes());
-
-app.listen(8080, () => console.log("Runing on port 8080"));
+app.listen(8080, () => console.log("Server running on port 8080"));
