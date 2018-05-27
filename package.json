@@ -4,11 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -w src --exec babel-node src/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "koa": "^2.5.1"
+    "global": "^4.3.2",
+    "koa": "^2.5.1",
+    "koa-router": "^7.4.0",
+    "nodemon": "^1.17.5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
   }
 }
