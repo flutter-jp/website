@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
+const Promise = require("bluebird");
 
 const auth = require("./routes/auth");
 
@@ -9,6 +10,8 @@ dotenv.config();
 
 const app = express();
 app.use(bodyParser.json());
+
+mongoose.Promise = Promise;
 
 mongoose.connection.on("open", ref => {
   console.log("Connect to mongo server");
