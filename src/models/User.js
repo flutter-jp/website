@@ -23,7 +23,8 @@ const schema = new mongoose.Schema(
 schema.methods.generateJWT = function generateJWT() {
   return jwt.sign(
     {
-      email: this.email
+      email: this.email,
+      confirm: this.confirm
     },
     process.env.JWT_SECRECT_KEY
   );
