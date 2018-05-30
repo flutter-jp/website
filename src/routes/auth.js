@@ -10,3 +10,21 @@ exports.login = function(req, res) {
     }
   });
 };
+
+exports.confirm = (req, res) => {
+  const { token } = req.body;
+  User.findOneAndUpdate(
+    { confirmationToken: token },
+    { confirm: true, confirmationToken: "" },
+    { new: true }
+  )
+    .then(
+      user =>
+        user
+          ? res.json(user.toAuthJSON())
+          : res.status(400).json({ errors: "User does not exist" })
+    )
+    .catch(err => {
+      res.status(400).json({});
+    });
+};
