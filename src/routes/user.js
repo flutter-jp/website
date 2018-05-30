@@ -20,11 +20,17 @@ exports.resetPass = (req, res) => {
   const { email, password, new_password } = req.body.credentials;
   User.findOne({ email: email })
     .then(user => {
-      if (user && user.isValidPassword(password)) {
-        user.setPassword(new_password);
-        user.save().then(userRecord => {
-          res.json({ user: userRecord.toAuthJSON() });
-        });
+      if (user) {
+        if (user.isValidPassword(password)) {
+          user.setPassword(new_password);
+          user.save().then(userRecord => {
+            res.json({ user: userRecord.toAuthJSON() });
+          });
+        } else {
+          res.status(400).json({ errors: "Password error" });
+        }
+      } else {
+        res.status(400).json({ errors: "User dose not exits" });
       }
     })
     .catch(err => res.status(400).json({ errors: err }));
