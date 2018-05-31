@@ -1,6 +1,7 @@
 const User = require("../models/User.js");
 const parseErrors = require("../utils/parseErrors").parseErrors;
 const sendConfirmationEmail = require("../mailer.js").sendConfirmationEmail;
+const sendResetPasswordEmail = require("../mailer.js").sendResetPasswordEmail;
 
 exports.signup = (req, res) => {
   const { email, password } = req.body.user;
@@ -27,11 +28,22 @@ exports.resetPass = (req, res) => {
             res.json({ user: userRecord.toAuthJSON() });
           });
         } else {
-          res.status(400).json({ errors: "Password error" });
+          res.status(400).json({ errors: { globals: "Password error" } });
         }
       } else {
         res.status(400).json({ errors: "User dose not exits" });
       }
     })
-    .catch(err => res.status(400).json({ errors: err }));
+    .catch(err => res.status(400).json({ errors: { globals: err } }));
+};
+
+exports.resetPassword = (req, res) => {
+  User.findOne({ email: req.body.email }).then(user => {
+    if (user) {
+      sendResetPasswordEmail(user);
+      res.json({});
+    } else {
+      res.status(400).json({ errors: { globals: "User does't exits!" } });
+    }
+  });
 };

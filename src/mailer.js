@@ -28,3 +28,19 @@ exports.sendConfirmationEmail = function(user) {
 
   transport.sendMail(email); //user the mailtrap service to send email
 };
+
+exports.sendResetPasswordEmail = function(user) {
+  const transport = setup();
+  const email = {
+    from,
+    to: user.email,
+    subject: "Reset account password",
+    text: `
+      Reset the password as you can.
+
+      ${user.generateResetPasswordUrl()}
+    `
+  };
+
+  transport.sendMail(email);
+};
