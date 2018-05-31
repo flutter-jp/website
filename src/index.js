@@ -26,7 +26,8 @@ mongoose.connect(process.env.MONGDB_URI);
 
 app.post("/api/auth", auth.login);
 app.post("/api/auth/confirmation", auth.confirm);
+app.post("/api/auth/validate_token", auth.validateToken);
 app.post("/api/user", user.signup);
-app.post("/api/user/reset_password", user.resetPassword);
+app.post("/api/user/reset_password_request", user.resetPasswordRequest);
 
 app.listen(8080, () => console.log("Server running on port 8080"));
