@@ -39,3 +39,21 @@ exports.validateToken = (req, res) => {
     }
   });
 };
+
+exports.resetPassword = (req, res) => {
+  const { password, token } = req.body.data;
+  jwt.verify(token, process.env.JWT_SECRECT_KEY, (err, decoded) => {
+    if (err) {
+      res.status(401).json({ errors: { global: "Invalid token" } });
+    } else {
+      User.findOne({ _id: decoded._id }).then(user => {
+        if (user) {
+          user.setPassword(password);
+          user.save().then(() => res.json({}));
+        } else {
+          res.status(401).json({ errors: { global: "Invalid token" } });
+        }
+      });
+    }
+  });
+};
