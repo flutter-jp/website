@@ -6,6 +6,7 @@ const Promise = require("bluebird");
 
 const auth = require("./routes/auth");
 const user = require("./routes/user");
+const books = require("./routes/books");
 
 dotenv.config();
 
@@ -30,5 +31,6 @@ app.post("/api/auth/validate_token", auth.validateToken);
 app.post("/api/auth/reset_password", auth.resetPassword);
 app.post("/api/user", user.signup);
 app.post("/api/user/reset_password_request", user.resetPasswordRequest);
+app.get("/api/books/search", books.search);
 
 app.listen(8080, () => console.log("Server running on port 8080"));
