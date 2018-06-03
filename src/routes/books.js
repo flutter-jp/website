@@ -33,7 +33,8 @@ router.get("/fetchPage", authorizate, (req, res) => {
   ).then(result => {
     parseString(result, (err, goodreadsResult) => {
       const numPage = goodreadsResult.GoodreadsResponse.book[0].num_pages[0];
-      res.json({ page: numPage });
+      const page = numPage ? parseInt(numPage, 10) : 0;
+      res.json({ page });
     });
   });
 });
