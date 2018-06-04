@@ -45,3 +45,16 @@ Content-Type: application/json
 ###
 GET http://localhost:8080/api/books/search HTTP/1.1
 Content-Type: application/json
+
+###
+POST http://localhost:8080/api/books/search HTTP/1.1
+Content-Type: application/json
+authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRhYnZpbS5kZXZAZ21haWwuY29tIiwiY29uZmlybSI6dHJ1ZSwiaWF0IjoxNTI4MDczNDgzfQ.MfCtfaroDjOkFYogJUXR7nbNLZB3NCOQOxQO-EqaDa4" 
+
+{
+  "book": {
+    "title": "JavaScript: The Good Parts",
+    "page": 123,
+    "cover": "http://xxxxxx"
+  }
+}

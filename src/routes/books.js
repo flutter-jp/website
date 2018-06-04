@@ -3,8 +3,23 @@ const rp = require("request-promise");
 const parseString = require("xml2js").parseString;
 const authorizate = require("../utils/authorizate").authorizate;
 const router = express.Router();
+const Books = require("../models/Books");
 
-router.get("/search", authorizate, (req, res) => {
+router.use(authorizate);
+
+router.get("/", (req, res) => {
+  Books.find({ userId: req.currentUser._id }).then(books => res.json(books));
+});
+
+router.post("/", (req, res) => {
+  let book = req.body.book;
+  book.userId = req.currentUser._id;
+  Books.create(book)
+    .then(book => res.json({ book }))
+    .then(res.status(400).json({ errors: { globals: "User does't exits!" } }));
+});
+
+router.get("/search", (req, res) => {
   rp(
     `https://www.goodreads.com/search/index.xml?key=${
       process.env.GOODREADS_KEY
@@ -25,7 +40,7 @@ router.get("/search", authorizate, (req, res) => {
   });
 });
 
-router.get("/fetchPage", authorizate, (req, res) => {
+router.get("/fetchPage", (req, res) => {
   rp(
     `https://www.goodreads.com/book/show.xml?key=${
       process.env.GOODREADS_KEY
