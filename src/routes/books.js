@@ -8,15 +8,15 @@ const Books = require("../models/Books");
 router.use(authorizate);
 
 router.get("/", (req, res) => {
-  Books.find({ userId: req.currentUser._id }).then(books => res.json(books));
+  Books.find({ userId: req.currentUser._id }).then(books =>
+    res.json({ books })
+  );
 });
 
 router.post("/", (req, res) => {
   let book = req.body.book;
   book.userId = req.currentUser._id;
-  Books.create(book)
-    .then(book => res.json({ book }))
-    .then(res.status(400).json({ errors: { globals: "User does't exits!" } }));
+  Books.create(book).then(book => res.json({ book }));
 });
 
 router.get("/search", (req, res) => {

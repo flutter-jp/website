@@ -5,7 +5,7 @@ const schema = new mongoose.Schema({
   author: { type: String, required: true },
   covers: { type: String, required: true },
   goodreadsId: { type: Number },
-  page: { type: Number, required: true },
+  page: { type: Number },
   userId: { type: mongoose.Schema.ObjectId, required: true }
 });
 
