@@ -1,7 +1,15 @@
+const express = require("express");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
-exports.login = function(req, res) {
+const router = express.Router();
+
+// app.post("/api/auth", auth.login);
+// app.post("/api/auth/confirmation", auth.confirm);
+// app.post("/api/auth/validate_token", auth.validateToken);
+// app.post("/api/auth/reset_password", auth.resetPassword);
+
+router.post("/", (req, res) => {
   const { credentials } = req.body;
   User.findOne({ email: credentials.email }).then(user => {
     if (user && user.isValidPassword(credentials.password)) {
@@ -10,9 +18,9 @@ exports.login = function(req, res) {
       res.status(400).json({ errors: { global: "Invalid Credentials" } });
     }
   });
-};
+});
 
-exports.confirm = (req, res) => {
+router.post("/confirmation", (req, res) => {
   const { token } = req.body;
   User.findOneAndUpdate(
     { confirmationToken: token },
@@ -28,9 +36,9 @@ exports.confirm = (req, res) => {
     .catch(err => {
       res.status(400).json({});
     });
-};
+});
 
-exports.validateToken = (req, res) => {
+router.post("/validate_token", (req, res) => {
   jwt.verify(req.body.token, process.env.JWT_SECRECT_KEY, err => {
     if (err) {
       res.status(401).json({});
@@ -38,9 +46,9 @@ exports.validateToken = (req, res) => {
       res.json({});
     }
   });
-};
+});
 
-exports.resetPassword = (req, res) => {
+router.post("/reset_password", (req, res) => {
   const { password, token } = req.body.data;
   jwt.verify(token, process.env.JWT_SECRECT_KEY, (err, decoded) => {
     if (err) {
@@ -56,4 +64,6 @@ exports.resetPassword = (req, res) => {
       });
     }
   });
-};
+});
+
+module.exports = router;

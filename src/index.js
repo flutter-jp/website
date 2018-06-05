@@ -25,10 +25,7 @@ mongoose.connection.on("error", err => {
 
 mongoose.connect(process.env.MONGDB_URI);
 
-app.post("/api/auth", auth.login);
-app.post("/api/auth/confirmation", auth.confirm);
-app.post("/api/auth/validate_token", auth.validateToken);
-app.post("/api/auth/reset_password", auth.resetPassword);
+app.use("/api/auth", auth);
 app.use("/api/user", user);
 app.use("/api/books", books);
 
