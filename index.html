@@ -58,7 +58,7 @@
     // config
     window.$docsify = {
         name: 'flutter japan',
-        repo: 'https://github.com/flutterjapan/flutterjapan_site',
+        repo: 'https://github.com/flutterjapan/flutterjapan',
         // logo:'assets/images/avatar.png',
         coverpage: true,
         loadSidebar: true,
@@ -76,12 +76,12 @@
         homepage: 'README.md',
         mergeNavbar: true,
         search: {
-            maxAge: 86400000,  
+            maxAge: 86400000,
             placeholder: 'search...',
             noData: 'no data!'
         },
         plugins: [
-            EditOnGithubPlugin.create('https://github.com/houko/flutter-study-app/tree/gh-pages/'),
+            EditOnGithubPlugin.create('https://github.com/flutterjapan/flutterjapan'),
             function (hook, vm) {
                 hook.beforeEach(function (html) {
                     return html
@@ -110,10 +110,11 @@
     const gitalk = new Gitalk({
         clientID: 'eccd544e06964ad7d8b9',
         clientSecret: '292bc142e33da666c0c8bcca9ef08560ebb4819e',
-        repo: 'flutterjapan_site',
+        repo: 'flutterjapan',
         owner: 'flutterjapan',
         admin: ['houko'],
         distractionFreeMode: false,
+        language:'en',
         id: decodeURI(location.pathname),
     });
 </script>

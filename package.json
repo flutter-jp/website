@@ -1,5 +1,5 @@
 {
-  "name": "flutterjapan_site",
+  "name": "flutterjapan",
   "version": "1.0.0",
   "description": "flutter japan site.",
   "main": "index.html",
@@ -13,12 +13,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/flutterjapan/flutterjapan_site.git"
+    "url": "git+https://github.com/flutterjapan/flutterjapan.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/flutterjapan/flutterjapan_site/issues"
+    "url": "https://github.com/flutterjapan/flutterjapan/issues"
   },
-  "homepage": "https://github.com/flutterjapan/flutterjapan_site#readme"
+  "homepage": "https://github.com/flutterjapan/flutterjapan#readme"
 }
