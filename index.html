@@ -59,7 +59,7 @@
     // config
     window.$docsify = {
         name: 'flutter japan',
-        repo: 'https://github.com/flutterjapan/flutterjapan',
+        repo: 'https://github.com/flutter-jp/website',
         // logo:'assets/images/avatar.png',
         coverpage: true,
         loadSidebar: true,
@@ -82,7 +82,7 @@
             noData: 'no data!'
         },
         plugins: [
-            EditOnGithubPlugin.create('https://github.com/flutterjapan/flutterjapan'),
+            EditOnGithubPlugin.create('https://github.com/flutter-jp/website'),
             function (hook, vm) {
                 hook.beforeEach(function (html) {
                     return html
@@ -109,10 +109,10 @@
 
     // git talk
     const gitalk = new Gitalk({
-        clientID: 'eccd544e06964ad7d8b9',
-        clientSecret: '292bc142e33da666c0c8bcca9ef08560ebb4819e',
-        repo: 'flutterjapan',
-        owner: 'flutterjapan',
+        clientID: '01d078a9227cb98337e0',
+        clientSecret: '62d4f8c6beb0cfb64318059594d0be7c278ab995',
+        repo: 'website',
+        owner: 'flutter-jp',
         admin: ['houko'],
         distractionFreeMode: false,
         language:'en',
